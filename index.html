@@ -1,0 +1,1214 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Team BlueMinds | SIH 2025</title>
+
+    <!-- Fonts: Inter and Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- AOS Animation CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+
+    <!-- Lucide Icons (Lightweight SVG icons) -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ["Inter", "sans-serif"],
+              heading: ["Poppins", "sans-serif"],
+            },
+            colors: {
+              brand: {
+                50: "#f0f9ff",
+                100: "#e0f2fe",
+                500: "#3b82f6", // Primary Blue
+                600: "#2563eb",
+                900: "#1e3a8a",
+              },
+              accent: {
+                500: "#6366f1", // Indigo
+              },
+            },
+          },
+        },
+      };
+    </script>
+
+    <style>
+      /* Custom Styles for nuances Tailwind doesn't cover by default */
+      body {
+        background-color: #f8fafc;
+        overflow-x: hidden;
+      }
+
+      .glass-nav {
+        background: rgba(255, 255, 255, 0.85);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+      }
+
+      .glass-card {
+        background: rgba(255, 255, 255, 0.9);
+        backdrop-filter: blur(8px);
+        border: 1px solid rgba(255, 255, 255, 0.6);
+      }
+
+      /* Gradient Text */
+      .text-gradient {
+        background: linear-gradient(135deg, #3b82f6 0%, #6366f1 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      /* Particle Canvas */
+      #particle-canvas {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 0;
+        pointer-events: none;
+      }
+
+      .hero-content {
+        z-index: 10;
+        position: relative;
+      }
+    </style>
+  </head>
+  <body class="text-slate-800 antialiased">
+    <!-- Navbar -->
+    <nav
+      class="fixed w-full z-50 glass-nav transition-all duration-300"
+      id="navbar"
+    >
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-20">
+          <!-- Logo -->
+          <div
+            class="flex-shrink-0 flex items-center gap-2 cursor-pointer"
+            onclick="window.scrollTo(0,0)"
+          >
+            <i data-lucide="plane" class="text-brand-600 h-8 w-8"></i>
+            <span
+              class="font-heading font-bold text-xl tracking-tight text-slate-900"
+              >Team <span class="text-brand-600">BlueMinds</span></span
+            >
+          </div>
+
+          <!-- Desktop Menu -->
+          <div class="hidden md:flex space-x-8 items-center">
+            <a
+              href="#home"
+              class="text-slate-600 hover:text-brand-600 font-medium transition-colors"
+              >Home</a
+            >
+            <a
+              href="#about-sih"
+              class="text-slate-600 hover:text-brand-600 font-medium transition-colors"
+              >About SIH</a
+            >
+            <a
+              href="#project"
+              class="text-slate-600 hover:text-brand-600 font-medium transition-colors"
+              >Project</a
+            >
+            <a
+              href="#team"
+              class="text-slate-600 hover:text-brand-600 font-medium transition-colors"
+              >Team</a
+            >
+            <a
+              href="#mentor"
+              class="text-slate-600 hover:text-brand-600 font-medium transition-colors"
+              >Mentor</a
+            >
+            <a
+              href="#contact"
+              class="px-5 py-2.5 rounded-full bg-slate-900 text-white font-medium hover:bg-brand-600 transition-all shadow-lg hover:shadow-brand-500/30"
+            >
+              Contact Us
+            </a>
+          </div>
+
+          <!-- Mobile Menu Button -->
+          <div class="md:hidden flex items-center">
+            <button
+              id="mobile-menu-btn"
+              class="text-slate-600 hover:text-brand-600 focus:outline-none"
+            >
+              <i data-lucide="menu" class="h-8 w-8"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mobile Menu Panel -->
+      <div
+        id="mobile-menu"
+        class="hidden md:hidden bg-white border-t border-slate-100 absolute w-full shadow-xl"
+      >
+        <div class="px-4 pt-2 pb-6 space-y-2">
+          <a
+            href="#home"
+            class="block px-3 py-3 rounded-md text-base font-medium text-slate-700 hover:text-brand-600 hover:bg-slate-50"
+            >Home</a
+          >
+          <a
+            href="#about-sih"
+            class="block px-3 py-3 rounded-md text-base font-medium text-slate-700 hover:text-brand-600 hover:bg-slate-50"
+            >About SIH</a
+          >
+          <a
+            href="#project"
+            class="block px-3 py-3 rounded-md text-base font-medium text-slate-700 hover:text-brand-600 hover:bg-slate-50"
+            >Project</a
+          >
+          <a
+            href="#team"
+            class="block px-3 py-3 rounded-md text-base font-medium text-slate-700 hover:text-brand-600 hover:bg-slate-50"
+            >Team</a
+          >
+          <a
+            href="#mentor"
+            class="block px-3 py-3 rounded-md text-base font-medium text-slate-700 hover:text-brand-600 hover:bg-slate-50"
+            >Mentor</a
+          >
+          <a
+            href="#contact"
+            class="block px-3 py-3 mt-4 text-center rounded-md text-base font-medium bg-brand-600 text-white hover:bg-brand-700"
+            >Contact Us</a
+          >
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section
+      id="home"
+      class="relative min-h-screen flex items-center pt-20 overflow-hidden bg-gradient-to-br from-brand-50 via-white to-indigo-50"
+    >
+      <!-- Canvas for Particles -->
+      <canvas id="particle-canvas"></canvas>
+
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full hero-content">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <!-- Text Content -->
+          <div data-aos="fade-right" data-aos-duration="1000">
+            <div
+              class="inline-flex items-center px-3 py-1 rounded-full border border-brand-200 bg-brand-50 text-brand-600 text-sm font-semibold mb-6"
+            >
+              <span class="flex h-2 w-2 rounded-full bg-brand-600 mr-2"></span>
+              Smart India Hackathon 2025 Finalists
+            </div>
+
+            <h1
+              class="text-5xl md:text-6xl font-heading font-extrabold text-slate-900 leading-tight mb-6"
+            >
+              Building <span class="text-gradient">Resilient Intelligence</span
+              ><br />
+              for Fault-Tolerant Systems
+            </h1>
+
+            <p
+              class="text-lg md:text-xl text-slate-600 mb-8 max-w-lg leading-relaxed"
+            >
+              Team <strong>BlueMinds2025</strong> presents
+              <strong>RapFix</strong> — an AI-driven Self-Healing Computing
+              Framework that autonomously detects, isolates, and repairs
+              hardware faults in real time. Designed for
+              <strong>defense and aerospace reliability</strong>, RapFix ensures
+              zero downtime with predictive healing and digital twin
+              visualization.
+            </p>
+
+            <div class="flex flex-col sm:flex-row gap-4">
+              <a
+                href="#project"
+                class="px-8 py-4 rounded-lg bg-brand-600 text-white font-semibold shadow-lg shadow-brand-500/30 hover:bg-brand-700 hover:translate-y-[-2px] transition-all text-center"
+              >
+                Explore RapFix
+              </a>
+              <a
+                href="#team"
+                class="px-8 py-4 rounded-lg bg-white text-slate-700 border border-slate-200 font-semibold hover:bg-slate-50 hover:border-slate-300 transition-all text-center flex items-center justify-center gap-2"
+              >
+                Meet the Innovators
+                <i data-lucide="arrow-right" class="w-4 h-4"></i>
+              </a>
+            </div>
+          </div>
+
+          <!-- Hero Image / Illustration -->
+          <div
+            class="relative"
+            data-aos="fade-left"
+            data-aos-duration="1000"
+            data-aos-delay="200"
+          >
+            <div
+              class="absolute -inset-4 bg-gradient-to-r from-brand-500 to-accent-500 rounded-full opacity-20 blur-3xl animate-pulse"
+            ></div>
+
+            <img
+              src="https://images.unsplash.com/photo-1629909613649-1fefc2d1d3f8?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80"
+              alt="Self-Healing Computing Visualization"
+              class="relative rounded-2xl shadow-2xl border border-white/50 w-full object-cover h-[400px] md:h-[500px]"
+            />
+
+            <!-- Floating Badge -->
+            <div
+              class="absolute -bottom-6 -left-6 bg-white p-4 rounded-xl shadow-xl border border-slate-100 flex items-center gap-3 animate-bounce"
+              style="animation-duration: 3s"
+            >
+              <div class="bg-green-100 p-2 rounded-lg">
+                <i data-lucide="cpu" class="text-green-600"></i>
+              </div>
+              <div>
+                <p class="text-xs text-slate-500 font-semibold uppercase">
+                  Healing Engine Status
+                </p>
+                <p class="text-slate-900 font-bold">Fault-Free Operation</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About SIH -->
+    <section id="about-sih" class="py-20 bg-white">
+      <div class="max-w-4xl mx-auto px-4 text-center">
+        <h2
+          class="text-3xl font-heading font-bold text-slate-900 mb-6"
+          data-aos="fade-up"
+        >
+          About Smart India Hackathon
+        </h2>
+        <div class="w-20 h-1 bg-brand-500 mx-auto mb-8 rounded-full"></div>
+        <p
+          class="text-lg text-slate-600 leading-relaxed mb-10"
+          data-aos="fade-up"
+          data-aos-delay="100"
+        >
+          Smart India Hackathon (SIH) is a nationwide initiative to provide
+          students a platform to solve some of the most pressing problems we
+          face in our daily lives, and thus inculcate a culture of product
+          innovation and a mindset of problem-solving.
+        </p>
+        <div
+          class="grid grid-cols-1 md:grid-cols-3 gap-6"
+          data-aos="fade-up"
+          data-aos-delay="200"
+        >
+          <div class="p-6 bg-slate-50 rounded-xl">
+            <i
+              data-lucide="lightbulb"
+              class="w-10 h-10 text-yellow-500 mx-auto mb-4"
+            ></i>
+            <h3 class="font-bold text-slate-800">Innovation</h3>
+          </div>
+          <div class="p-6 bg-slate-50 rounded-xl">
+            <i
+              data-lucide="code-2"
+              class="w-10 h-10 text-brand-600 mx-auto mb-4"
+            ></i>
+            <h3 class="font-bold text-slate-800">Technology</h3>
+          </div>
+          <div class="p-6 bg-slate-50 rounded-xl">
+            <i
+              data-lucide="users"
+              class="w-10 h-10 text-accent-500 mx-auto mb-4"
+            ></i>
+            <h3 class="font-bold text-slate-800">Collaboration</h3>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Project Section -->
+    <section id="project" class="py-24 bg-slate-50 relative overflow-hidden">
+      <!-- Decoration -->
+      <div
+        class="absolute top-0 right-0 w-64 h-64 bg-brand-100 rounded-full mix-blend-multiply filter blur-3xl opacity-30"
+      ></div>
+      <div
+        class="absolute bottom-0 left-0 w-64 h-64 bg-accent-100 rounded-full mix-blend-multiply filter blur-3xl opacity-30"
+      ></div>
+
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div class="text-center mb-16">
+          <span
+            class="text-brand-600 font-semibold tracking-wider uppercase text-sm"
+            >Problem Statement ID: 21653</span
+          >
+          <h2
+            class="text-3xl md:text-4xl font-heading font-bold text-slate-900 mt-2 mb-4"
+          >
+            Self Healing Computing Elements
+          </h2>
+          <p class="text-slate-600 max-w-2xl mx-auto">
+            Bridging the gap between physical systems and digital analytics.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+          <div class="order-2 md:order-1" data-aos="fade-right">
+            <img
+              src="/BlueMinds2025/images/solution.png"
+              alt="Dashboard Mockup"
+              class="rounded-xl shadow-2xl border border-white"
+            />
+          </div>
+          <div class="order-1 md:order-2 space-y-6" data-aos="fade-left">
+            <div class="glass-card p-6 rounded-xl">
+              <h3
+                class="text-xl font-bold text-slate-800 mb-2 flex items-center gap-2"
+              >
+                <i data-lucide="cpu" class="text-brand-600"></i> The Solution
+              </h3>
+              <p class="text-slate-600">
+                We are developing an
+                <strong class="text-black"
+                  >AI-driven Self-Healing Computing System</strong
+                >
+                that autonomously detects, isolates, and repairs hardware faults
+                in real-time. By integrating on-chip sensors, predictive TinyML
+                models, and FPGA-based digital reconfiguration, the system
+                ensures zero downtime and fault-tolerant performance across
+                critical defense and aerospace operations.
+              </p>
+            </div>
+
+            <ul class="space-y-4">
+              <ul class="space-y-3">
+                <li class="flex items-start gap-3">
+                  <div class="bg-green-100 p-1 rounded-full mt-1">
+                    <i data-lucide="check" class="w-4 h-4 text-green-600"></i>
+                  </div>
+                  <span class="text-slate-700">
+                    Instantaneous Fault Detection using AI-driven pattern
+                    recognition for real-time anomaly identification.
+                  </span>
+                </li>
+
+                <li class="flex items-start gap-3">
+                  <div class="bg-green-100 p-1 rounded-full mt-1">
+                    <i data-lucide="check" class="w-4 h-4 text-green-600"></i>
+                  </div>
+                  <span class="text-slate-700">
+                    Dynamic Logic Reconfiguration that automatically reroutes
+                    faulty hardware blocks to maintain system uptime.
+                  </span>
+                </li>
+
+                <li class="flex items-start gap-3">
+                  <div class="bg-green-100 p-1 rounded-full mt-1">
+                    <i data-lucide="check" class="w-4 h-4 text-green-600"></i>
+                  </div>
+                  <span class="text-slate-700">
+                    Predictive Healing Engine leveraging TinyML to forecast
+                    potential faults and preemptively repair failures.
+                  </span>
+                </li>
+
+                <li class="flex items-start gap-3">
+                  <div class="bg-green-100 p-1 rounded-full mt-1">
+                    <i data-lucide="check" class="w-4 h-4 text-green-600"></i>
+                  </div>
+                  <span class="text-slate-700">
+                    Thermo-Dynamic Pathfinding algorithm to reroute data through
+                    cooler, more efficient chip regions for longer lifespan.
+                  </span>
+                </li>
+
+                <li class="flex items-start gap-3">
+                  <div class="bg-green-100 p-1 rounded-full mt-1">
+                    <i data-lucide="check" class="w-4 h-4 text-green-600"></i>
+                  </div>
+                  <span class="text-slate-700">
+                    Collective Resilience Network enabling devices to share
+                    learned fault solutions, improving fleet-wide intelligence.
+                  </span>
+                </li>
+              </ul>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Innovations -->
+    <section class="py-24 bg-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+          <h2
+            class="text-3xl font-heading font-bold text-slate-900"
+            data-aos="fade-up"
+          >
+            Innovation Highlights
+          </h2>
+          <p
+            class="mt-4 text-slate-600"
+            data-aos="fade-up"
+            data-aos-delay="100"
+          >
+            Core technologies that power our solution.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <!-- Feature 1 -->
+          <div
+            class="group bg-slate-50 p-8 rounded-2xl transition-all duration-300 hover:shadow-xl hover:-translate-y-2 border border-slate-100"
+            data-aos="fade-up"
+            data-aos-delay="100"
+          >
+            <div
+              class="w-14 h-14 bg-blue-100 rounded-lg flex items-center justify-center mb-6 group-hover:bg-brand-600 transition-colors"
+            >
+              <i
+                data-lucide="radio"
+                class="w-7 h-7 text-brand-600 group-hover:text-white transition-colors"
+              ></i>
+            </div>
+            <h3 class="text-xl font-bold text-slate-900 mb-3">
+              Live Telemetry
+            </h3>
+            <p class="text-slate-600 text-sm leading-relaxed">
+              High-frequency data streaming from aircraft sensors visualized in
+              real-time with less than 200ms latency.
+            </p>
+          </div>
+
+          <!-- Feature 2 -->
+          <div
+            class="group bg-slate-50 p-8 rounded-2xl transition-all duration-300 hover:shadow-xl hover:-translate-y-2 border border-slate-100"
+            data-aos="fade-up"
+            data-aos-delay="200"
+          >
+            <div
+              class="w-14 h-14 bg-indigo-100 rounded-lg flex items-center justify-center mb-6 group-hover:bg-accent-500 transition-colors"
+            >
+              <i
+                data-lucide="brain-circuit"
+                class="w-7 h-7 text-accent-600 group-hover:text-white transition-colors"
+              ></i>
+            </div>
+            <h3 class="text-xl font-bold text-slate-900 mb-3">
+              AI Fault Detection
+            </h3>
+            <p class="text-slate-600 text-sm leading-relaxed">
+              Machine Learning algorithms that analyze patterns to predict
+              component failures before they occur.
+            </p>
+          </div>
+
+          <!-- Feature 3 -->
+          <div
+            class="group bg-slate-50 p-8 rounded-2xl transition-all duration-300 hover:shadow-xl hover:-translate-y-2 border border-slate-100"
+            data-aos="fade-up"
+            data-aos-delay="300"
+          >
+            <div
+              class="w-14 h-14 bg-purple-100 rounded-lg flex items-center justify-center mb-6 group-hover:bg-purple-600 transition-colors"
+            >
+              <i
+                data-lucide="box"
+                class="w-7 h-7 text-purple-600 group-hover:text-white transition-colors"
+              ></i>
+            </div>
+            <h3 class="text-xl font-bold text-slate-900 mb-3">
+              3D Digital Twin
+            </h3>
+            <p class="text-slate-600 text-sm leading-relaxed">
+              Interactive Three.js dashboard providing a spatial representation
+              of the aircraft status.
+            </p>
+          </div>
+
+          <!-- Feature 4 -->
+          <div
+            class="group bg-slate-50 p-8 rounded-2xl transition-all duration-300 hover:shadow-xl hover:-translate-y-2 border border-slate-100"
+            data-aos="fade-up"
+            data-aos-delay="400"
+          >
+            <div
+              class="w-14 h-14 bg-orange-100 rounded-lg flex items-center justify-center mb-6 group-hover:bg-orange-600 transition-colors"
+            >
+              <i
+                data-lucide="server"
+                class="w-7 h-7 text-orange-600 group-hover:text-white transition-colors"
+              ></i>
+            </div>
+            <h3 class="text-xl font-bold text-slate-900 mb-3">
+              Scalable Architecture
+            </h3>
+            <p class="text-slate-600 text-sm leading-relaxed">
+              Robust Node.js backend designed to handle massive telemetry data
+              streams with horizontal scaling capabilities.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Team Section -->
+    <section id="team" class="py-24 bg-gradient-to-b from-slate-50 to-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+          <h2
+            class="text-3xl font-heading font-bold text-slate-900"
+            data-aos="fade-up"
+          >
+            Meet Team BlueMinds
+          </h2>
+          <p class="mt-4 text-slate-600" data-aos="fade-up">
+            The minds behind the innovation.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          <!-- Member 1 -->
+          <div
+            class="bg-white rounded-xl shadow-lg overflow-hidden group"
+            data-aos="fade-up"
+            data-aos-delay="100"
+          >
+            <div class="h-2 bg-brand-500 w-full"></div>
+            <div class="p-6 text-center">
+              <div
+                class="w-24 h-24 mx-auto bg-slate-200 rounded-full mb-4 overflow-hidden border-4 border-white shadow-md"
+              >
+                <img
+                  src="/BlueMinds2025/images/kiruthik.jpg"
+                  alt="Member"
+                  class="w-full h-full object-cover"
+                />
+              </div>
+              <h3 class="text-lg font-bold text-slate-900">Kiruthik</h3>
+              <p class="text-brand-600 text-sm font-medium">
+                Team Leader & System Engineer
+              </p>
+              <p class="text-brand-600 text-sm font-medium mb-2">III - CSE</p>
+              <div
+                class="flex justify-center space-x-3 opacity-0 group-hover:opacity-100 transition-opacity"
+              >
+                <a
+                  href="https://www.linkedin.com/in/kiruthikpurpose"
+                  class="text-slate-400 hover:text-brand-600"
+                  ><i data-lucide="linkedin" class="w-5 h-5"></i
+                ></a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Member 2 -->
+          <div
+            class="bg-white rounded-xl shadow-lg overflow-hidden group"
+            data-aos="fade-up"
+            data-aos-delay="200"
+          >
+            <div class="h-2 bg-pink-500 w-full"></div>
+            <div class="p-6 text-center">
+              <div
+                class="w-24 h-24 mx-auto bg-slate-200 rounded-full mb-4 overflow-hidden border-4 border-white shadow-md"
+              >
+                <img
+                  src="/BlueMinds2025/images//praveen.jpg"
+                  alt="Member"
+                  class="w-full h-full object-cover"
+                />
+              </div>
+              <h3 class="text-lg font-bold text-slate-900">Praveen Balaji</h3>
+              <p class="text-pink-600 text-sm font-medium">III - CSE</p>
+              <p class="text-pink-600 text-sm font-medium mb-2">ML Engineer</p>
+              <div
+                class="flex justify-center space-x-3 opacity-0 group-hover:opacity-100 transition-opacity"
+              >
+                <a href="#" class="text-slate-400 hover:text-brand-600"
+                  ><i data-lucide="linkedin" class="w-5 h-5"></i
+                ></a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Member 3 -->
+          <div
+            class="bg-white rounded-xl shadow-lg overflow-hidden group"
+            data-aos="fade-up"
+            data-aos-delay="300"
+          >
+            <div class="h-2 bg-yellow-500 w-full"></div>
+            <div class="p-6 text-center">
+              <div
+                class="w-24 h-24 mx-auto bg-slate-200 rounded-full mb-4 overflow-hidden border-4 border-white shadow-md"
+              >
+                <img
+                  src="/BlueMinds2025/images/jayavel.jpg"
+                  alt="Member"
+                  class="w-full h-full object-cover object-center"
+                />
+              </div>
+              <h3 class="text-lg font-bold text-slate-900">Jayavel</h3>
+              <p class="text-yellow-600 text-sm font-medium">III - IT</p>
+              <p class="text-yellow-600 text-sm font-medium mb-2">
+                Fullstack Developer
+              </p>
+              <div
+                class="flex justify-center space-x-3 opacity-0 group-hover:opacity-100 transition-opacity"
+              >
+                <a
+                  href="https://www.linkedin.com/in/l-g-jayavel/"
+                  class="text-slate-400 hover:text-brand-600"
+                  ><i data-lucide="linkedin" class="w-5 h-5"></i
+                ></a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Member 4 -->
+          <div
+            class="bg-white rounded-xl shadow-lg overflow-hidden group"
+            data-aos="fade-up"
+            data-aos-delay="400"
+          >
+            <div class="h-2 bg-[#5c5a70] w-full"></div>
+            <div class="p-6 text-center">
+              <div
+                class="w-24 h-24 mx-auto bg-slate-200 rounded-full mb-4 overflow-hidden border-4 border-white shadow-md"
+              >
+                <img
+                  src="/BlueMinds2025/images/tamil.jpg"
+                  alt="Member"
+                  class="w-full h-full object-cover"
+                />
+              </div>
+              <h3 class="text-lg font-bold text-slate-900">Tamil Selvan</h3>
+              <p class="text-[#5c5a70] text-sm font-medium">III - IT</p>
+              <p class="text-[#5c5a70] text-sm font-medium mb-2">
+                Blockchain Developer
+              </p>
+              <div
+                class="flex justify-center space-x-3 opacity-0 group-hover:opacity-100 transition-opacity"
+              >
+                <a
+                  href="https://www.linkedin.com/in/tamilselvan3/"
+                  class="text-slate-400 hover:text-brand-600"
+                  ><i data-lucide="linkedin" class="w-5 h-5"></i
+                ></a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Member 5 -->
+          <div
+            class="bg-white rounded-xl shadow-lg overflow-hidden group"
+            data-aos="fade-up"
+            data-aos-delay="500"
+          >
+            <div class="h-2 bg-red-500 w-full"></div>
+            <div class="p-6 text-center">
+              <div
+                class="w-24 h-24 mx-auto bg-slate-200 rounded-full mb-4 overflow-hidden border-4 border-white shadow-md"
+              >
+                <img
+                  src="/BlueMinds2025/images/afeefa.jpg"
+                  alt="Member"
+                  class="w-full h-full object-cover"
+                />
+              </div>
+              <h3 class="text-lg font-bold text-slate-900">Afeefa Nasnin</h3>
+              <p class="text-red-600 text-sm font-medium">III - year CSE</p>
+              <p class="text-red-600 text-sm font-medium mb-2">IoT Engineer</p>
+              <div
+                class="flex justify-center space-x-3 opacity-0 group-hover:opacity-100 transition-opacity"
+              >
+                <a
+                  href="https://www.linkedin.com/in/afeefa-nasnin-a-98b050364/"
+                  class="text-slate-400 hover:text-brand-600"
+                  ><i data-lucide="linkedin" class="w-5 h-5"></i
+                ></a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Member 6 -->
+          <div
+            class="bg-white rounded-xl shadow-lg overflow-hidden group"
+            data-aos="fade-up"
+            data-aos-delay="600"
+          >
+            <div class="h-2 bg-black w-full"></div>
+            <div class="p-6 text-center">
+              <div
+                class="w-24 h-24 mx-auto bg-slate-200 rounded-full mb-4 overflow-hidden border-4 border-white shadow-md"
+              >
+                <img
+                  src="/BlueMinds2025/images/thasnima.jpeg"
+                  alt="Member"
+                  class="w-full h-full object-cover"
+                />
+              </div>
+              <h3 class="text-lg font-bold text-slate-900">Thasnima Nargies</h3>
+              <p class="text-black text-sm font-medium">II - year ECE</p>
+              <p class="text-black text-sm font-medium mb-2">
+                Hardware Engineer
+              </p>
+              <div
+                class="flex justify-center space-x-3 opacity-0 group-hover:opacity-100 transition-opacity"
+              >
+                <a
+                  href="https://www.linkedin.com/in/thasnima-nargies-m-67409a272/"
+                  class="text-slate-400 hover:text-brand-600"
+                  ><i data-lucide="linkedin" class="w-5 h-5"></i
+                ></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Mentor Section -->
+    <section
+      id="mentor"
+      class="py-20 bg-slate-900 text-white relative overflow-hidden"
+    >
+      <!-- Abstract BG shapes -->
+      <div class="absolute top-0 left-0 w-full h-full overflow-hidden">
+        <div
+          class="absolute top-[-50%] right-[-10%] w-[500px] h-[500px] bg-brand-900 rounded-full blur-[100px] opacity-40"
+        ></div>
+      </div>
+
+      <div class="max-w-7xl mx-auto px-4 relative z-10 text-center">
+        <h2 class="text-3xl font-heading font-bold mb-12" data-aos="fade-down">
+          Guided By
+        </h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <!-- Mentor 1 -->
+          <div
+            class="bg-white/5 backdrop-blur-sm p-8 rounded-2xl border border-white/10 group hover:bg-white/10 transition-all"
+            data-aos="fade-up"
+            data-aos-delay="100"
+          >
+            <div
+              class="w-24 h-24 mx-auto rounded-full overflow-hidden border-4 border-brand-500 shadow-xl mb-4"
+            >
+              <img
+                src="/BlueMinds2025/images/gajendransir.jpg"
+                alt="Mentor"
+                class="w-full h-full object-cover"
+              />
+            </div>
+            <h3 class="text-xl font-bold">Mr.Gajendran Parthasarathi</h3>
+            <p class="text-brand-400 font-medium mb-4 text-sm">
+              Professor of Computer Science
+            </p>
+            <p class="text-slate-300 text-sm italic mb-6">
+              "Innovation happens when curiosity meets perseverance."
+            </p>
+            <a
+              href="https://www.linkedin.com/in/er-gajendran-parthasarathi-9689a2109/"
+              target="_blank"
+              class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/10 hover:bg-brand-600 text-white transition-all"
+            >
+              <i data-lucide="linkedin" class="w-5 h-5"></i>
+            </a>
+          </div>
+
+          <!-- Mentor 2 -->
+          <div
+            class="bg-white/5 backdrop-blur-sm p-8 rounded-2xl border border-white/10 group hover:bg-white/10 transition-all"
+            data-aos="fade-up"
+            data-aos-delay="200"
+          >
+            <div
+              class="w-24 h-24 mx-auto rounded-full overflow-hidden border-4 border-accent-500 shadow-xl mb-4"
+            >
+              <img
+                src="/BlueMinds2025/images/muthusamysir.jpg"
+                alt="Mentor"
+                class="w-full h-full object-cover"
+              />
+            </div>
+            <h3 class="text-xl font-bold">Mr. Muthusamy</h3>
+            <p class="text-accent-400 font-medium mb-4 text-sm">
+              IoT Systems Expert
+            </p>
+            <p class="text-slate-300 text-sm italic mb-6">
+              "Connecting the physical world with digital intelligence is the
+              future."
+            </p>
+            <a
+              href="https://www.linkedin.com/in/muthusamy-k-a7ba161b6/"
+              target="_blank"
+              class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/10 hover:bg-accent-600 text-white transition-all"
+            >
+              <i data-lucide="linkedin" class="w-5 h-5"></i>
+            </a>
+          </div>
+
+          <!-- Mentor 3 -->
+          <div
+            class="bg-white/5 backdrop-blur-sm p-8 rounded-2xl border border-white/10 group hover:bg-white/10 transition-all"
+            data-aos="fade-up"
+            data-aos-delay="300"
+          >
+            <div
+              class="w-24 h-24 mx-auto rounded-full overflow-hidden border-4 border-green-500 shadow-xl mb-4"
+            >
+              <img
+                src="/BlueMinds2025/images//mukunthraj.jpg"
+                alt="Mentor"
+                class="w-full h-full object-cover"
+              />
+            </div>
+            <h3 class="text-xl font-bold">Mr. Mukuntharaj Chelliah</h3>
+            <p class="text-green-400 font-medium mb-4 text-sm">
+              Industrial AI Consultant
+            </p>
+            <p class="text-slate-300 text-sm italic mb-6">
+              "Scalable architecture is key to deploying real-world AI
+              solutions."
+            </p>
+            <a
+              href="https://www.linkedin.com/in/mukuntharaj-chelliah-736a8526b/"
+              target="_blank"
+              class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/10 hover:bg-green-600 text-white transition-all"
+            >
+              <i data-lucide="linkedin" class="w-5 h-5"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact" class="bg-white border-t border-slate-200 pt-16 pb-12">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div
+          class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12"
+        >
+          <!-- Brand -->
+          <div class="col-span-1">
+            <div class="flex items-center gap-2 mb-4">
+              <i data-lucide="plane" class="text-brand-600 h-6 w-6"></i>
+              <span class="font-heading font-bold text-xl text-slate-900"
+                >Team <span class="text-brand-600">BlueMinds</span></span
+              >
+            </div>
+            <p class="text-slate-600 text-sm leading-relaxed mb-6">
+              Building the future of aircraft safety through intelligent
+              monitoring systems. Participant of Smart India Hackathon 2025.
+            </p>
+          </div>
+
+          <!-- Team Contacts -->
+          <div class="col-span-1 lg:col-span-2">
+            <h4
+              class="font-bold text-slate-900 mb-6 uppercase tracking-wider text-xs"
+            >
+              Team Contacts
+            </h4>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-6">
+              <div class="group">
+                <p
+                  class="font-semibold text-slate-800 text-sm group-hover:text-brand-600 transition-colors"
+                >
+                  Kiruthik
+                </p>
+                <a
+                  href="mailto:kiruthikmr.bcse@rathinam.in"
+                  class="text-slate-500 text-sm hover:underline"
+                  >kiruthikmr.bcse@rathinam.in</a
+                >
+              </div>
+              <div class="group">
+                <p
+                  class="font-semibold text-slate-800 text-sm group-hover:text-brand-600 transition-colors"
+                >
+                  Praveen Balaji
+                </p>
+                <a
+                  href="mailto:praveenbalaji.bcse@rathinam.in"
+                  class="text-slate-500 text-sm hover:underline"
+                  >praveenbalaji.bcse@rathinam.in</a
+                >
+              </div>
+              <div class="group">
+                <p
+                  class="font-semibold text-slate-800 text-sm group-hover:text-brand-600 transition-colors"
+                >
+                  Jayavel
+                </p>
+                <a
+                  href="mailto:jayavellg.bit23@rathinam.in"
+                  class="text-slate-500 text-sm hover:underline"
+                  >jayavellg.bit23@rathinam.in</a
+                >
+              </div>
+              <div class="group">
+                <p
+                  class="font-semibold text-slate-800 text-sm group-hover:text-brand-600 transition-colors"
+                >
+                  Tamil Selvan
+                </p>
+                <a
+                  href="mailto:tamilselvanrd.bit23@rathinam.in"
+                  class="text-slate-500 text-sm hover:underline"
+                  >tamilselvanrd.bit23@rathinam.in</a
+                >
+              </div>
+              <div class="group">
+                <p
+                  class="font-semibold text-slate-800 text-sm group-hover:text-brand-600 transition-colors"
+                >
+                  Afeefa Nasnin
+                </p>
+                <a
+                  href="mailto:afeefanasnins.@rathinam.in"
+                  class="text-slate-500 text-sm hover:underline"
+                  >afeefanasnins.bcse@rathinam.in</a
+                >
+              </div>
+              <div class="group">
+                <p
+                  class="font-semibold text-slate-800 text-sm group-hover:text-brand-600 transition-colors"
+                >
+                  Thasnima Nargies
+                </p>
+                <a
+                  href="mailto:thasnimanargies.bece.@rathinam.in"
+                  class="text-slate-500 text-sm hover:underline"
+                  >thasnimanargies.bece.@rathinam.in</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <!-- Mentor Contacts -->
+          <div class="col-span-1">
+            <h4
+              class="font-bold text-slate-900 mb-6 uppercase tracking-wider text-xs"
+            >
+              Mentor Contacts
+            </h4>
+            <ul class="space-y-6">
+              <li class="group">
+                <p
+                  class="font-semibold text-slate-800 text-sm group-hover:text-accent-600 transition-colors"
+                >
+                  Mr. Gajendran Parthasarathi
+                </p>
+                <a
+                  href="mailto:gajendran.p@rathinam.in"
+                  class="text-slate-500 text-sm hover:underline"
+                  >gajendran.p@rathinam.in</a
+                >
+              </li>
+              <li class="group">
+                <p
+                  class="font-semibold text-slate-800 text-sm group-hover:text-accent-600 transition-colors"
+                >
+                  Mr. Muthusamy
+                </p>
+                <a
+                  href="mailto:muthusamy@rathinam.in"
+                  class="text-slate-500 text-sm hover:underline"
+                  >muthusamy@rathinam.in</a
+                >
+              </li>
+              <li class="group">
+                <p
+                  class="font-semibold text-slate-800 text-sm group-hover:text-accent-600 transition-colors"
+                >
+                  Mr. Mukuntharaj Chelliah
+                </p>
+                <a
+                  href="mailto:mukuntharaj.c@rathinam.in"
+                  class="text-slate-500 text-sm hover:underline"
+                  >mukuntharaj.c@rathinam.in</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div
+          class="border-t border-slate-100 pt-8 flex flex-col md:flex-row justify-between items-center text-slate-400 text-xs"
+        >
+          <p>&copy; 2025 Team BlueMinds. All rights reserved.</p>
+          <p class="mt-2 md:mt-0">Designed for SIH 2025</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Scroll to Top Button -->
+    <button
+      id="scrollToTop"
+      class="fixed bottom-8 right-8 bg-brand-600 text-white p-3 rounded-full shadow-xl translate-y-24 transition-transform duration-300 hover:bg-brand-700 z-50"
+    >
+      <i data-lucide="arrow-up" class="w-6 h-6"></i>
+    </button>
+
+    <!-- AOS JS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <!-- Main Logic -->
+    <script>
+      // Initialize Lucide Icons
+      lucide.createIcons();
+
+      // Initialize AOS
+      AOS.init({
+        once: true, // Whether animation should happen only once - while scrolling down
+        offset: 100, // Offset (in px) from the original trigger point
+        duration: 800, // Duration of animation
+        easing: "ease-out-cubic",
+      });
+
+      // Mobile Menu Toggle
+      const btn = document.getElementById("mobile-menu-btn");
+      const menu = document.getElementById("mobile-menu");
+
+      btn.addEventListener("click", () => {
+        menu.classList.toggle("hidden");
+      });
+
+      // Close mobile menu when clicking a link
+      document.querySelectorAll("#mobile-menu a").forEach((link) => {
+        link.addEventListener("click", () => {
+          menu.classList.add("hidden");
+        });
+      });
+
+      // Scroll to Top & Navbar Scroll Effect
+      const navbar = document.getElementById("navbar");
+      const scrollBtn = document.getElementById("scrollToTop");
+
+      window.addEventListener("scroll", () => {
+        // Navbar effect
+        if (window.scrollY > 20) {
+          navbar.classList.add("shadow-md");
+        } else {
+          navbar.classList.remove("shadow-md");
+        }
+
+        // Scroll to top button visibility
+        if (window.scrollY > 500) {
+          scrollBtn.classList.remove("translate-y-24");
+        } else {
+          scrollBtn.classList.add("translate-y-24");
+        }
+      });
+
+      scrollBtn.addEventListener("click", () => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
+
+      /**
+       * Simple Canvas Particle Network Animation
+       * Adds a "Tech/IoT" feel to the hero section
+       */
+      const canvas = document.getElementById("particle-canvas");
+      const ctx = canvas.getContext("2d");
+
+      let width, height;
+      let particles = [];
+
+      // Configuration
+      const particleCount = window.innerWidth < 768 ? 30 : 60; // Fewer particles on mobile
+      const connectionDistance = 150;
+
+      function resize() {
+        width = canvas.width = window.innerWidth;
+        height = canvas.height = document.getElementById("home").offsetHeight;
+      }
+
+      class Particle {
+        constructor() {
+          this.x = Math.random() * width;
+          this.y = Math.random() * height;
+          this.vx = (Math.random() - 0.5) * 1.5;
+          this.vy = (Math.random() - 0.5) * 1.5;
+          this.size = Math.random() * 2 + 1;
+        }
+
+        update() {
+          this.x += this.vx;
+          this.y += this.vy;
+
+          // Bounce off edges
+          if (this.x < 0 || this.x > width) this.vx *= -1;
+          if (this.y < 0 || this.y > height) this.vy *= -1;
+        }
+
+        draw() {
+          ctx.fillStyle = "rgba(59, 130, 246, 0.5)"; // Blue-500 with opacity
+          ctx.beginPath();
+          ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+          ctx.fill();
+        }
+      }
+
+      function initParticles() {
+        particles = [];
+        for (let i = 0; i < particleCount; i++) {
+          particles.push(new Particle());
+        }
+      }
+
+      function animateParticles() {
+        ctx.clearRect(0, 0, width, height);
+
+        for (let i = 0; i < particles.length; i++) {
+          particles[i].update();
+          particles[i].draw();
+
+          // Draw connections
+          for (let j = i; j < particles.length; j++) {
+            const dx = particles[i].x - particles[j].x;
+            const dy = particles[i].y - particles[j].y;
+            const distance = Math.sqrt(dx * dx + dy * dy);
+
+            if (distance < connectionDistance) {
+              ctx.beginPath();
+              ctx.strokeStyle = `rgba(99, 102, 241, ${
+                0.15 * (1 - distance / connectionDistance)
+              })`; // Indigo fade
+              ctx.lineWidth = 1;
+              ctx.moveTo(particles[i].x, particles[i].y);
+              ctx.lineTo(particles[j].x, particles[j].y);
+              ctx.stroke();
+            }
+          }
+        }
+        requestAnimationFrame(animateParticles);
+      }
+
+      // Init
+      window.addEventListener("resize", resize);
+      resize();
+      initParticles();
+      animateParticles();
+    </script>
+  </body>
+</html>
